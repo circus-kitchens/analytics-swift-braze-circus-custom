@@ -10,6 +10,7 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '13.0'
   s.swift_version = '5.0'
   s.source_files = 'Sources/SegmentBraze/**/*'
+  s.static_framework = true
   s.dependency 'Segment', '~> 1.3.4'
   s.dependency 'BrazeKit', '~> 5.11.0'
 end
