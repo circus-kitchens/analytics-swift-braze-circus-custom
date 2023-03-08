@@ -44,6 +44,7 @@ public class BrazeDestination: DestinationPlugin {
     public let type = PluginType.destination
     public let key = "Appboy"
     public var analytics: Analytics? = nil
+    public var automaticallyTrackPurchases = false
     var braze: Braze? = nil
     
     private var brazeSettings: BrazeSettings?
@@ -156,6 +157,9 @@ public class BrazeDestination: DestinationPlugin {
     
     public func track(event: TrackEvent) -> TrackEvent? {
         let properties = event.properties?.dictionaryValue
+        if !automaticallyTrackPurchases {
+            return event
+        }
         let revenue = self.extractRevenue(key: "revenue", from: properties)
         if (revenue != nil && revenue != 0) || event.event == "Order Completed" || event.event == "Completed Order" {
             let currency = properties?["currency"] as? String ?? "USD"
