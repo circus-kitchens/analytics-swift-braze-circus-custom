@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.name             = 'SegmentBrazeCircusCustom'
   s.module_name      = 'SegmentBrazeCircusCustom'
-  s.version          = '1.0.0'
+  s.version          = '1.0.1'
   s.summary          = 'analytics-swift Cocoapods support.'
   s.homepage         = 'https://github.com/circus-kitchens/analytics-swift-braze-circus-custom'
   s.license          = { :type => 'MIT', :file => './LICENSE' }
