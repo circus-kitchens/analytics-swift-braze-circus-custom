@@ -157,11 +157,8 @@ public class BrazeDestination: DestinationPlugin {
     
     public func track(event: TrackEvent) -> TrackEvent? {
         let properties = event.properties?.dictionaryValue
-        if !automaticallyTrackPurchases {
-            return event
-        }
         let revenue = self.extractRevenue(key: "revenue", from: properties)
-        if (revenue != nil && revenue != 0) || event.event == "Order Completed" || event.event == "Completed Order" {
+        if automaticallyTrackPurchases && ((revenue != nil && revenue != 0) || event.event == "Order Completed" || event.event == "Completed Order") {
             let currency = properties?["currency"] as? String ?? "USD"
             
             if properties != nil {
@@ -201,6 +198,12 @@ public class BrazeDestination: DestinationPlugin {
                                    price: revenue ?? 0,
                                    quantity: 1)
             }
+        } else {
+          if properties?.isEmpty ?? true {
+            braze?.logCustomEvent(name: event.event)
+          } else {
+            braze?.logCustomEvent(name: event.event, properties: properties)
+          }
         }
         return event
     }
