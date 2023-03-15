@@ -202,7 +202,10 @@ public class BrazeDestination: DestinationPlugin {
           if properties?.isEmpty ?? true {
             braze?.logCustomEvent(name: event.event)
           } else {
-            braze?.logCustomEvent(name: event.event, properties: properties)
+            var sanitizedProperties = properties
+            sanitizedProperties?.removeValue(forKey: "revenue")
+            sanitizedProperties?.removeValue(forKey: "currency")
+            braze?.logCustomEvent(name: event.event, properties: sanitizedProperties)
           }
         }
         return event
