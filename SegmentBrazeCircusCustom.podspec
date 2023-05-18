@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.name             = 'SegmentBrazeCircusCustom'
   s.module_name      = 'SegmentBrazeCircusCustom'
-  s.version          = '1.1.0'
+  s.version          = '1.2.0'
   s.summary          = 'analytics-swift Cocoapods support.'
   s.homepage         = 'https://github.com/circus-kitchens/analytics-swift-braze-circus-custom'
   s.license          = { :type => 'MIT', :file => './LICENSE' }
@@ -12,5 +12,5 @@ Pod::Spec.new do |s|
   s.source_files = 'Sources/SegmentBraze/**/*'
   s.static_framework = true
   s.dependency 'Segment', '~> 1.3.4'
-  s.dependency 'BrazeKit', '~> 5.12.0'
+  s.dependency 'BrazeKit', '~> 6.0.0'
 end
